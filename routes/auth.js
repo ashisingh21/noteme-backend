@@ -4,7 +4,7 @@ const router = express.Router();
 const User = require("../models/User");
 const bcrypt = require("bcrypt");
 var jwt = require("jsonwebtoken");
-const JWT_SECRET = "beinghumanisagoodthing";
+const JWT_SECRET = process.env.JWT_SECRET;
 const fetchuser = require('../middleware/fetchuser')
 
 let success = false;

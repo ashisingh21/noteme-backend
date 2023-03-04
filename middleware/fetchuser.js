@@ -1,5 +1,6 @@
+require('dotenv').config()
 var jwt = require("jsonwebtoken");
-const JWT_SECRET = "beinghumanisagoodthing";
+const JWT_SECRET = process.env.JWT_SECRET;
 const fetchuser = async (req, res, next) => {
 
     // FETCHING THE TOKEN FROM THE HEADER
