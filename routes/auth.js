@@ -4,7 +4,6 @@ const router = express.Router();
 const User = require("../models/User");
 const bcrypt = require("bcrypt");
 var jwt = require("jsonwebtoken");
-const JWT_SECRET = "beinghumanisagoodthing";
 const fetchuser = require('../middleware/fetchuser')
 
 let success = false;
@@ -50,7 +49,7 @@ router.post(
                 },
             };
             success = true;
-            const auth_Token = jwt.sign(data, JWT_SECRET);
+            const auth_Token = jwt.sign(data, process.env.JWT_SECRET);
             res.json({ success, auth_Token });
         } catch (error) {
             res.status(500).json("Some error occured");
@@ -93,8 +92,8 @@ router.post('/login', [
         };
 
         success = true;
-        // SENDING AN AUTH TOKEN USING ID (DATA) AND JWT_SECRET
-        const auth_Token = jwt.sign(data, JWT_SECRET);
+        // SENDING AN AUTH TOKEN USING ID (DATA) AND process.env.JWT_SECRET
+        const auth_Token = jwt.sign(data, process.env.JWT_SECRET);
         res.json({ success, auth_Token });
 
     } catch (error) {
